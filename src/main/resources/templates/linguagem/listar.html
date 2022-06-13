@@ -3,7 +3,13 @@
 	layout:decorate="~{layout.html}">
 
 <div layout:fragment="content">
-	<div>
+	
+	<div class="alert-primary" th:if="${#lists.isEmpty(lista)}">
+		Nenhuma linguagem cadastrada
+	</div>
+	<div class="alert-primary" th:if="${mensagem != null}" th:text="${mensagem}">
+	</div>
+	<div th:if="${not #lists.isEmpty(lista)}">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -15,12 +21,13 @@
 			<tbody>
 				<tr th:each="linguagem : ${lista}">
 					<td th:text="${linguagem.id}"></td>
-					<td th:text="${linguagem.name}"></td>
-					<td></td>
+					<td th:text="${linguagem.name}" width="70%"></td>
+					<td><a class="btn btn-primary btn-sm" th:href="@{linguagem/editar(id=${linguagem.id})}">Editar</a>
+						<a class="btn btn-primary btn-sm" th:href="@{linguagem/excluir(id=${linguagem.id})}">Excluir</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		
 	</div>
 </div>
 
