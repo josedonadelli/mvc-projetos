@@ -11,7 +11,7 @@
 
 <body>
 	<div id="menu">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">GFT</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -30,8 +30,8 @@
 								Linguagens
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<li><a class="dropdown-item" href="#">Listar</a></li>
-								<li><a class="dropdown-item" href="#">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/linguagem}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/linguagem/novo}">Cadastrar</a></li>
 							</ul>
 						</li>
 						<li class="nav-item dropdown">
@@ -56,9 +56,6 @@
 
 							</ul>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-						</li>
 					</ul>
 					<form class="d-flex">
 						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -68,7 +65,7 @@
 			</div>
 		</nav>
 	</div>
-	<div id="conteudo" layout:fragment="content">
+	<div id="conteudo" class="container" layout:fragment="content">
 
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
