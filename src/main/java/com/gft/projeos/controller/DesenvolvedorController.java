@@ -26,7 +26,6 @@ public class DesenvolvedorController {
 	@RequestMapping(path = "editar") // Funcao otimizada para criar OU editar um desenvolvedor
 	public ModelAndView editarDesenvolvedor(@RequestParam(required = false) Long id) {
 		ModelAndView mv = new ModelAndView("desenvolvedor/form.html");
-		// mv.addObject("desenvolvedor", new Desenvolvedor());
 		Desenvolvedor desenvolvedor;
 		if (id == null) {
 			desenvolvedor = new Desenvolvedor();
@@ -54,9 +53,9 @@ public class DesenvolvedorController {
 		if (bindingResult.hasErrors()) {
 			mv.addObject("desenvolvedor", desenvolvedor);
 		}
-		// Desenvolvedor desenvolvedorSalvo =
-		// desenvolvedorService.salvarDesenvolvedor(desenvolvedor);
+		
 		desenvolvedorService.salvarDesenvolvedor(desenvolvedor);
+		
 		if (novo) {
 			mv.addObject("desenvolvedor", new Desenvolvedor());
 		} else {
