@@ -51,7 +51,14 @@
 					</div>
 				</div>
 
-				
+				<div class="form-group mb-3">
+					<label for="desenvolvedor">Desenvolvedores: </label>
+					<div th:each="desenvolvedor : ${listaDesenvolvedores}">
+						<input type="checkbox" id="${desenvolvedor}" th:value="${desenvolvedor}" th:field="*{desenvolvedores}"></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('desenvolvedores')}" th:errors="*{desenvolvedores}"></div>
+						<label th:text="${desenvolvedor.nome}"/>
+					</div>
+				</div>
 
 
 				<button type="submit" class="btn btn-primary">Salvar Projeto</button>

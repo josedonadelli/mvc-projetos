@@ -3,12 +3,31 @@
 	layout:decorate="~{layout.html}">
 
 <div layout:fragment="content">
-	
+
 	<div class="alert-primary" th:if="${#lists.isEmpty(lista)}">
-		Nenhum desenvolvedor cadastrado
+		Nenhum desenvolvedor encontrado
 	</div>
-	<div class="alert-primary" th:if="${mensagem != null}" th:text="${mensagem}">
+	<div class="alert-primary" th:if="${mensagem != null}" th:text="${mensagem}"></div>
+	<div class="card mb-3">
+		<div class="card-header">
+			<p class="text-primary">Filtrar Desenvolvedor</p>
+		</div>
+		<div class="card-body">
+			<form method="GET">
+				<div class="form-group mb-3">
+					<label for="nome">Nome:</label>
+					<input class="form-control" type="text" th:value="${nome}" name="nome"></input>
+				</div>
+
+				<div class="form-group mb-3">
+					<label for="quatroLetras">Quatro Letras:</label>
+					<input class="form-control" type="text" th:value="${quatroLetras}" name="quatroLetras"></input>
+				</div>
+				<button type="submit" class="btn btn-primary">Pesquisar Desenvolvedor</button>
+			</form>
+		</div>
 	</div>
+
 	<div th:if="${not #lists.isEmpty(lista)}">
 		<table class="table table-striped">
 			<thead>
@@ -28,10 +47,13 @@
 					<td th:text="${desenvolvedor.nome}"></td>
 					<td th:text="${desenvolvedor.quatroLetras}"></td>
 					<td th:text="${desenvolvedor.email}"></td>
-					<td th:text="'R$' + ${#numbers.formatDecimal(desenvolvedor.salarioMensal, 0, 'POINT', 2, 'COMMA')}"></td>
+					<td th:text="'R$' + ${#numbers.formatDecimal(desenvolvedor.salarioMensal, 0, 'POINT', 2, 'COMMA')}">
+					</td>
 					<td th:text="${desenvolvedor.linguagem.name}"></td>
-					<td><a class="btn btn-primary btn-sm" th:href="@{desenvolvedor/editar(id=${desenvolvedor.id})}">Editar</a>
-						<a class="btn btn-primary btn-sm" th:href="@{desenvolvedor/excluir(id=${desenvolvedor.id})}" onclick="return confirm('Você realmente deseja excluir esse desenvolvedor?')">Excluir</a>
+					<td><a class="btn btn-primary btn-sm"
+							th:href="@{desenvolvedor/editar(id=${desenvolvedor.id})}">Editar</a>
+						<a class="btn btn-primary btn-sm" th:href="@{desenvolvedor/excluir(id=${desenvolvedor.id})}"
+							onclick="return confirm('Você realmente deseja excluir esse desenvolvedor?')">Excluir</a>
 					</td>
 				</tr>
 			</tbody>

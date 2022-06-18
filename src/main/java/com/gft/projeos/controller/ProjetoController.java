@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gft.projeos.entities.Projeto;
+import com.gft.projeos.services.DesenvolvedorService;
 import com.gft.projeos.services.LinguagemService;
 import com.gft.projeos.services.ProjetoService;
 
@@ -19,9 +20,11 @@ import com.gft.projeos.services.ProjetoService;
 @RequestMapping("projeto")
 public class ProjetoController {
 	@Autowired
-	ProjetoService projetoService;
+	private ProjetoService projetoService;
 	@Autowired
-	LinguagemService linguagemService;
+	private LinguagemService linguagemService;
+	@Autowired
+	private DesenvolvedorService desenvolvedorService;
 	
 	@RequestMapping(path = "editar")
 	public ModelAndView editarProjeto(@RequestParam(required = false) Long id) {
@@ -39,6 +42,7 @@ public class ProjetoController {
 		}
 		mv.addObject("projeto", projeto);
 		mv.addObject("listaLinguagens", linguagemService.listarLinguagens());
+		mv.addObject("listaDesenvolvedores", desenvolvedorService.listarTodosDesenvolvedores());	
 		return mv;
 	}
 	
@@ -64,6 +68,7 @@ public class ProjetoController {
 		}
 		mv.addObject("mensagem", "Projeto salvo com sucesso.");
 		mv.addObject("listaLinguagens", linguagemService.listarLinguagens());
+		mv.addObject("listaDesenvolvedores", desenvolvedorService.listarTodosDesenvolvedores());
 		return mv;
 	}
 	

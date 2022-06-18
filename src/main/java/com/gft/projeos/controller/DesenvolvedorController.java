@@ -68,9 +68,11 @@ public class DesenvolvedorController {
 	}
 
 	@RequestMapping
-	ModelAndView listarDesenvolvedores() {
+	ModelAndView listarDesenvolvedores(String nome, String quatroLetras) {
 		ModelAndView mv = new ModelAndView("desenvolvedor/listar.html");
-		mv.addObject("lista", desenvolvedorService.listarDesenvolvedores());
+		mv.addObject("lista", desenvolvedorService.listarDesenvolvedores(nome, quatroLetras));
+		mv.addObject("nome", nome);
+		mv.addObject("quatroLetras", quatroLetras);
 
 		return mv;
 	}
